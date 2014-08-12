@@ -27,7 +27,7 @@ class PiSpider(scrapy.Spider):
         self.path = path
 
     def parse(self, response):
-        for item in response.xpath('//tbody/tr/td[2]/a[contains(@href, "www.zdcj.net")]'):
+        for item in response.xpath('//tbody/tr/td[2]/a[contains(@href, "zdcj")]'):
             dateStr = item.xpath('../../td[6]/text()').extract()[0]
             currentDate = datetime.strptime(dateStr, "%Y-%m-%d").date()
             log.msg("Crawl Date is {0:%Y-%m-%d}".format(self.crawlDate),
